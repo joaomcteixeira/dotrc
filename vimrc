@@ -218,19 +218,21 @@ augroup END
 
 
 "# Fast mapping
-map <Space> <Leader>
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
-map <leader>v :wincmd v <bar> :wincmd l<CR>
-map <leader>s :wincmd s <bar> :wincmd j<CR>
+"map <Space> <Leader>
+nnoremap <Space>h :wincmd h<CR>
+nnoremap <Space>j :wincmd j<CR>
+nnoremap <Space>k :wincmd k<CR>
+nnoremap <Space>l :wincmd l<CR>
+nnoremap <Space>v :wincmd v <bar> :wincmd l<CR>
+nnoremap <Space>s :wincmd s <bar> :wincmd j<CR>
+nnoremap <Space>c :wincmd c<CR>
+nnoremap <Space>b :1wincmd c<CR>
 
 nnoremap ; :
-nnoremap : ;
+"nnoremap : ;
 
-
-
+" opens a file browser windo on the left
+nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
 
 
 
@@ -365,6 +367,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " https://vi.stackexchange.com/questions/14622
 let g:netrw_fastbrowse = 0
+"let g:netrw_winsize = 25
 
 
 
@@ -450,7 +453,7 @@ noremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 
 function! s:GitCommit()
   !git add %
-  !git commit 
+  !git commit
 endfunction
 
 command! Git :call <SID>GitCommit()
