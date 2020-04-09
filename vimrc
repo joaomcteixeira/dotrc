@@ -32,7 +32,10 @@
 
 
 
-"# Basic Operations
+"# Basic Configurations
+nnoremap ; :
+"nnoremap : ;
+
 " indentantion
 "filetype plugin on
 set tabstop=4 sts=4 shiftwidth=4 expandtab
@@ -113,7 +116,7 @@ highlight Visual ctermbg=1 ctermfg=0 cterm=NONE
 
 " ************************* PYTHON ************************************
 " Datatypes
-highlight pythonString ctermbg=NONE ctermfg=94 cterm=NONE 
+highlight pythonString ctermbg=NONE ctermfg=94 cterm=NONE
 highlight pythonNumber ctermbg=None ctermfg=19 cterm=NONE
 " Expressions
 highlight link pythonTripleQuotes pythonString
@@ -156,43 +159,43 @@ highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
 
 
 "# Lint Syntax
-augroup LintSyntax
-    autocmd!
-    "autocmd BufReadPost,FileReadPost *.py syntax match trailwhitespace /\S\s\+$/
-    autocmd BufReadPost,FileReadPost *.py syntax match idblock /^\s\{4}$/
-    autocmd BufReadPost,FileReadPost *.py syntax match idblockB /^\s\{8}$/
-    autocmd BufReadPost,FileReadPost *.py syntax match idblockC /^\s\{12}$/
-    autocmd BufReadPost,FileReadPost *.py syntax match badindent /^\s\{1,3}\S/
-    autocmd BufReadPost,FileReadPost *.py syntax match badindentA /^\s\{5,7}\S/
-    autocmd BufReadPost,FileReadPost *.py syntax match badindentB /^\s\{9,11}\S/
-    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass1 /^\s*\w.*\n\{,2}\(def\|class\)\s/ 
-    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass2 /^\s*\w.*\n\{4,}\(def\|class\)\s/ 
-    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass3 /^\s*\w.*\n\s+\(def\|class\)\s/ 
-    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass4 /^\s*\w.*\n\{3,}\s+\(def\|class\)\s/ 
-    "autocmd BufReadPost,FileReadPost *.py syntax match ddef /\p\n\ndef\s/
-    "autocmd BufReadPost,FileReadPost *.py syntax match ddefa /\p\n\s*def\s/
-    "autocmd BufReadPost,FileReadPost *.py syntax match ddefb /\p\n\{4,}def\s/
-    "autocmd BufReadPost,FileReadPost *.py syntax match ddefc /\p\n\nclass\s/
-    "autocmd BufReadPost,FileReadPost *.py syntax match ddefd /\p\n\{4,}class\s/
-    autocmd BufReadPost,FileReadPost *.py syntax match mathwrong /\s=\(+\|-\|\/\|*\)\s/
-    "autocmd BufReadPost,FileReadPost *.py syntax match badcommenta /\S\s#/
-    "autocmd BufReadPost,FileReadPost *.py syntax match badcommentb /\S#/
-
-    "autocmd BufReadPost,FileReadPost *.py hi link trailwhitespace ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi idblock ctermbg=255 ctermfg=NONE cterm=NONE
-    autocmd BufReadPost,FileReadPost *.py hi link idblockB idblock
-    autocmd BufReadPost,FileReadPost *.py hi link idblockC idblock
-    autocmd BufReadPost,FileReadPost *.py hi link badindent ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link badindentA ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link badindentB ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link ddefclass1 ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link ddefclass2 ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link ddefclass3 ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link ddefclass4 ErrorMsg
-    autocmd BufReadPost,FileReadPost *.py hi link mathwrong ErrorMsg
-    "autocmd BufReadPost,FileReadPost *.py hi link badcommenta ErrorMsg
-    "autocmd BufReadPost,FileReadPost *.py hi link badcommentb ErrorMsg
-augroup END
+"augroup LintSyntax
+"    autocmd!
+"    "autocmd BufReadPost,FileReadPost *.py syntax match trailwhitespace /\S\s\+$/
+"    autocmd BufReadPost,FileReadPost *.py syntax match idblock /^\s\{4}$/
+"    autocmd BufReadPost,FileReadPost *.py syntax match idblockB /^\s\{8}$/
+"    autocmd BufReadPost,FileReadPost *.py syntax match idblockC /^\s\{12}$/
+"    autocmd BufReadPost,FileReadPost *.py syntax match badindent /^\s\{1,3}\S/
+"    autocmd BufReadPost,FileReadPost *.py syntax match badindentA /^\s\{5,7}\S/
+"    autocmd BufReadPost,FileReadPost *.py syntax match badindentB /^\s\{9,11}\S/
+"    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass1 /^\s*\w.*\n\{,2}\(def\|class\)\s/ 
+"    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass2 /^\s*\w.*\n\{4,}\(def\|class\)\s/ 
+"    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass3 /^\s*\w.*\n\s+\(def\|class\)\s/ 
+"    autocmd BufReadPost,FileReadPost *.py syntax match ddefclass4 /^\s*\w.*\n\{3,}\s+\(def\|class\)\s/ 
+"    "autocmd BufReadPost,FileReadPost *.py syntax match ddef /\p\n\ndef\s/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match ddefa /\p\n\s*def\s/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match ddefb /\p\n\{4,}def\s/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match ddefc /\p\n\nclass\s/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match ddefd /\p\n\{4,}class\s/
+"    autocmd BufReadPost,FileReadPost *.py syntax match mathwrong /\s=\(+\|-\|\/\|*\)\s/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match badcommenta /\S\s#/
+"    "autocmd BufReadPost,FileReadPost *.py syntax match badcommentb /\S#/
+"
+"    "autocmd BufReadPost,FileReadPost *.py hi link trailwhitespace ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi idblock ctermbg=255 ctermfg=NONE cterm=NONE
+"    autocmd BufReadPost,FileReadPost *.py hi link idblockB idblock
+"    autocmd BufReadPost,FileReadPost *.py hi link idblockC idblock
+"    autocmd BufReadPost,FileReadPost *.py hi link badindent ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link badindentA ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link badindentB ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link ddefclass1 ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link ddefclass2 ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link ddefclass3 ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link ddefclass4 ErrorMsg
+"    autocmd BufReadPost,FileReadPost *.py hi link mathwrong ErrorMsg
+"    "autocmd BufReadPost,FileReadPost *.py hi link badcommenta ErrorMsg
+"    "autocmd BufReadPost,FileReadPost *.py hi link badcommentb ErrorMsg
+"augroup END
 
 
 
@@ -228,11 +231,36 @@ nnoremap <Space>s :wincmd s <bar> :wincmd j<CR>
 nnoremap <Space>c :wincmd c<CR>
 nnoremap <Space>b :1wincmd c<CR>
 
-nnoremap ; :
-"nnoremap : ;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"# comma remaps
 " opens a file browser windo on the left
 nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
+nnoremap ,p :!python %:p<cr>
+nnoremap ,t :!tox -e py37 -- %<cr>
 
 
 
@@ -253,10 +281,12 @@ nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<c
 
 
 
-"# Python specific
-noremap ,p :!python %:p<cr>
-noremap ,t :!tox -e py37 -- %
 
+
+
+
+
+"# Python specific commands
 
 command! Flist g/^\s*\(def\|class\)\s/#
 
@@ -349,7 +379,13 @@ set wildmenu
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !universal-ctags -R --exclude=.tox --exclude=.git .
+command! MakeTags !universal-ctags -R
+    \ --exclude=.tox
+    \ --exclude=.git
+    \ --exclude=docs
+    \ --exclude=dist
+    \ --exclude=htmlcov
+    \ .
 
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
@@ -422,34 +458,8 @@ command! Spell setlocal spell spelllang=en_us
 
 
 
-"# File Executions
-noremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"# GitHub Integrations
+"# GitHub Integration commands
 
 function! s:GitCommit()
   !git add %
