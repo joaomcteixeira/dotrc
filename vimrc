@@ -6,7 +6,13 @@
 "
 " Search for "# to scroll headers
 " topics are separated by 25 empty lines
-
+"
+" Plugins I use and how to install them, for Vim +8
+"
+" VimCompletesMe
+" https://github.com/ajh17/VimCompletesMe
+" to install simply run this in your home folder
+" git clone git://github.com/ajh17/VimCompletesMe.git ~/.vim/pack/vendor/start/VimCompletesMe
 
 
 
@@ -230,8 +236,20 @@ nnoremap <Space>v :wincmd v <bar> :wincmd l<CR>
 nnoremap <Space>s :wincmd s <bar> :wincmd j<CR>
 nnoremap <Space>c :wincmd c<CR>
 nnoremap <Space>b :1wincmd c<CR>
+nnoremap <Space>= :wincmd =<cr>
 
 
+let $tabcounter = 1
+
+function! Sum()
+  tabnew $tabcounter
+  let $tabcounter = $tabcounter + 1
+endfunction
+
+nnoremap <tab>n :call Sum()<cr>
+nnoremap <tab>l :tabnext<cr>
+nnoremap <tab>h :tabprev<cr>
+nnoremap <tab>c :tabclose<cr>
 
 
 
@@ -261,7 +279,7 @@ nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<c
 nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,p :!python %:p<cr>
 nnoremap ,t :!tox -e py37 -- %<cr>
-
+nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
 
 
 
@@ -298,10 +316,10 @@ function! s:insert_pyclass(classname)
         \ '    """',
         \ '    """',
         \ '    def __init__(self):',
-        \ '        """'
-        \ '        Parameters'
-        \ '        ----------'
-        \ '        """'
+        \ '        """',
+        \ '        Parameters',
+        \ '        ----------',
+        \ '        """',
         \ '        return',
     \ ]
     call map(l:text, {k, v -> l:indent . substitute(v, '\C<TMPL>', a:classname, 'g')})
@@ -315,15 +333,15 @@ function! s:insert_pyfunc(funcname)
     let l:text = [
         \ 'def <TMPL>():',
         \ '    """',
-        \ '    Function description here.'
-        \ ''
-        \ '    Parameters'
-        \ '    ----------'
-        \ ''
-        \ '    Returns'
-        \ '    -------'
-        \ '    """'
-        \ ''
+        \ '    Function description here.',
+        \ '',
+        \ '    Parameters',
+        \ '    ----------',
+        \ '',
+        \ '    Returns',
+        \ '    -------',
+        \ '    """',
+        \ '',
         \ '    return',
     \ ]
     call map(l:text, {k, v -> l:indent . substitute(v, '\C<TMPL>', a:funcname, 'g')})
