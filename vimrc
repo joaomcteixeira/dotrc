@@ -13,9 +13,11 @@
 " https://github.com/ajh17/VimCompletesMe
 " to install simply run this in your home folder
 " git clone git://github.com/ajh17/VimCompletesMe.git ~/.vim/pack/vendor/start/VimCompletesMe
-
-
-
+"
+" vim-eunuch
+" https://github.com/tpope/vim-eunuch
+" to install simply run this in your home folder
+" git clone https://github.com/tpope/vim-eunuch ~/.vim/pack/tpope/start/vim-eunuch
 
 
 
@@ -50,7 +52,6 @@ set autoindent      "Keep indentation from previous line
 "set smartindent     "Automatically inserts indentation in some cases
 "set cindent         "Like smartindent, but stricter and more customisable
 set foldmethod=indent  "commands, za, zo, zc, zR, zM
-
 " https://vi.stackexchange.com/questions/8741/how-to-automatically-turn-off-hlsearch-after-im-done-searching
 set hlsearch
 nnoremap <esc><esc> :silent! nohls<cr>
@@ -227,7 +228,12 @@ highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
 
 
 "# Fast mapping
-"map <Space> <Leader>
+
+" Navigation
+nnoremap <S-f> <C-f>
+nnoremap <S-b> <C-b>
+
+" New windows
 nnoremap <Space>h :wincmd h<CR>
 nnoremap <Space>j :wincmd j<CR>
 nnoremap <Space>k :wincmd k<CR>
@@ -239,6 +245,7 @@ nnoremap <Space>b :1wincmd c<CR>
 nnoremap <Space>= :wincmd =<cr>
 
 
+" New tabs
 let $tabcounter = 1
 
 function! Sum()
@@ -276,6 +283,7 @@ nnoremap <tab>c :tabclose<cr>
 "# comma remaps
 " opens a file browser windo on the left
 nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+nnoremap ,f :Flist<cr>
 nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,p :!python %:p<cr>
 nnoremap ,t :!tox -e py37 -- %<cr>
@@ -486,28 +494,6 @@ endfunction
 
 command! Git :call <SID>GitCommit()
 command! Push !git push origin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
