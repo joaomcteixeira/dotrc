@@ -282,9 +282,11 @@ nnoremap <tab>c :tabclose<cr>
 
 "# comma remaps
 " opens a file browser windo on the left
-nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+"nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
 nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
+nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :!python %:p<cr>
 nnoremap ,t :!tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
@@ -492,7 +494,7 @@ function! s:GitCommit()
   !git commit
 endfunction
 
-command! Git :call <SID>GitCommit()
+command! Commit :call <SID>GitCommit()
 command! Push !git push origin
 
 
