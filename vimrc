@@ -41,23 +41,37 @@
 
 
 "# Basic Configurations
+set nocompatible
+set history=1000
+set showcmd
+set showmode
+set nowrap
+
+
 nnoremap ; :
 "nnoremap : ;
 
 " indentantion
 "filetype plugin on
 set tabstop=4 sts=4 shiftwidth=4 expandtab
-set number
+"set number
 set autoindent      "Keep indentation from previous line
 "set smartindent     "Automatically inserts indentation in some cases
 "set cindent         "Like smartindent, but stricter and more customisable
 set foldmethod=indent  "commands, za, zo, zc, zR, zM
 " https://vi.stackexchange.com/questions/8741/how-to-automatically-turn-off-hlsearch-after-im-done-searching
+set linebreak
 set hlsearch
+set ignorecase
+set smartcase
 nnoremap <esc><esc> :silent! nohls<cr>
 
 highlight ColorColumn ctermbg=248 ctermfg=NONE cterm=NONE
 set colorcolumn=72,80
+
+highlight CursorLine ctermbg=lightblue
+highlight CursorColumn ctermbg=lightblue
+
 " other option
 " call matchadd('ColorColumn', '\%v81v', 100)
 
@@ -70,8 +84,19 @@ augroup numbertoggle
 augroup END
 
 
+" Status line
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
 
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
 
+" https://shapeshed.com/vim-statuslines
+set laststatus=2
+set statusline=%n%{StatuslineGit()}%F\ %m%=\ %l\/%L\|%c\ \(%p%%\)
 
 
 
@@ -283,13 +308,16 @@ nnoremap <tab>c :tabclose<cr>
 "# comma remaps
 " opens a file browser windo on the left
 "nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
 nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :!python %:p<cr>
+nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,t :!tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
+nnoremap ,w :set nowrap!<cr>
 
 
 
