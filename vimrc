@@ -85,18 +85,31 @@ augroup END
 
 
 " Status line
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
+"function! GitBranch()
+"  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+"endfunction
+
+"Initially I had the GitBranch() and StatuslineGit() directly in the
+"statusline, however: https://github.com/vim/vim/issues/3197
+" So I decided to define the gitbranch as global variable prior to defining
+" the statusline. I usually don't change branch while in vim. If I start using
+" that feature, I will have to update this as well.
+"
+" other links:
+" https://shapeshed.com/vim-statuslines
+
+
+let gitbranch_ = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 
 function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+  let l:branchname = g:gitbranch_
+  return strlen(l:branchname) > 0?'['.l:branchname.']':''
 endfunction
 
-" https://shapeshed.com/vim-statuslines
+let gitbranch = StatuslineGit()
+
 set laststatus=2
-set statusline=%n%{StatuslineGit()}%F\ %m%=\ %l\/%L\|%c\ \(%p%%\)
+set statusline=%n\ %{gitbranch}\ %t\ %m%=\ %l\/%L\|%c\ \(%p%%\)
 
 
 
@@ -311,7 +324,7 @@ nnoremap <tab>c :tabclose<cr>
 nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
-nnoremap ,l :!java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
+nnoremap ,j :w <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :!python %:p<cr>
 nnoremap ,s :set spell! spelllang=en_us<cr>
@@ -319,7 +332,11 @@ nnoremap ,t :!tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
 nnoremap ,w :set nowrap!<cr>
 
-
+" plantUML bindings
+" https://vi.stackexchange.com/questions/16094/add-a-block-of-text-to-end-of-lines
+nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!column<Space>-t<Esc>
+nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
+nnoremap ,3 {j<C-V>}<BS>$:%sort<Esc>
 
 
 
