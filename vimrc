@@ -97,7 +97,9 @@ augroup END
 "
 " other links:
 " https://shapeshed.com/vim-statuslines
-
+" https://stackoverflow.com/questions/8065777/is-it-possible-to-display-the-date-time-in-vim-over-putty
+" https://stackoverflow.com/questions/28284276/how-i-can-show-the-time-in-vim-status-bar
+" https://linux.die.net/man/3/strftime
 
 let gitbranch_ = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 
@@ -109,7 +111,7 @@ endfunction
 let gitbranch = StatuslineGit()
 
 set laststatus=2
-set statusline=%n\ %{gitbranch}\ %t\ %m%=\ %l\/%L\|%c\ \(%p%%\)
+set statusline=%n\ %{gitbranch}\ %t\ %m%=\ %l\/%L\|%c\ \(%p%%\)\ TIME:\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
 
 
 
@@ -325,6 +327,7 @@ nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
 nnoremap ,j :w <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
+nnoremap ,k :!tox -e check -- %<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :!python %:p<cr>
 nnoremap ,s :set spell! spelllang=en_us<cr>
