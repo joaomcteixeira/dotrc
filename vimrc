@@ -1,4 +1,3 @@
-" Welcome to my .vimrc file
 "
 " Joao M.C.Teixeira
 " joaomcteixeira@gmail.com
@@ -38,14 +37,25 @@
 
 
 
-
-
 "# Basic Configurations
 set nocompatible
 set history=1000
 set showcmd
 set showmode
 set nowrap
+set nobackup
+set undofile
+
+" https://stackoverflow.com/questions/1549263
+" two possible solutions for the same problem
+" 1
+"silent !mkdir $HOME/.vim/undo > /dev/null 2>&1
+"silent !mkdir $HOME/.vim/swp > /dev/null 2>&1
+" 2
+silent !mkdir -p $HOME/.vim/undo
+silent !mkdir -p $HOME/.vim/swp
+set undodir=$HOME/.vim/undo//
+set directory=$HOME/.vim/swp//
 
 
 nnoremap ; :
@@ -111,7 +121,7 @@ endfunction
 let gitbranch = StatuslineGit()
 
 set laststatus=2
-set statusline=%n\ %{gitbranch}\ %t\ %m%=\ %l\/%L\|%c\ \(%p%%\)\ TIME:\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
+set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ \(%p%%\)\ TIME:\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
 
 
 
@@ -326,14 +336,16 @@ nnoremap <tab>c :tabclose<cr>
 nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
-nnoremap ,j :w <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
-nnoremap ,k :!tox -e check -- %<cr>
+nnoremap ,j :up <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
+nnoremap ,k :up <bar> !tox -e check -- %<cr>
 nnoremap ,n :set number! relativenumber!<cr>
-nnoremap ,p :!python %:p<cr>
+nnoremap ,p :up <bar> !python %:p<cr>
 nnoremap ,s :set spell! spelllang=en_us<cr>
-nnoremap ,t :!tox -e py37 -- %<cr>
+nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
 nnoremap ,w :set nowrap!<cr>
+nnoremap ,z :%s/^\s*$/<cr><C-O>
+
 
 " plantUML bindings
 " https://vi.stackexchange.com/questions/16094/add-a-block-of-text-to-end-of-lines
