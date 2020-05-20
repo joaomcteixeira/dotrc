@@ -79,7 +79,8 @@ nnoremap <esc><esc> :silent! nohls<cr>
 highlight ColorColumn ctermbg=248 ctermfg=NONE cterm=NONE
 set colorcolumn=72,80
 
-highlight CursorLine ctermbg=lightblue
+" ctermfg=underline may be useful
+highlight CursorLine ctermbg=lightblue ctermfg=NONE cterm=NONE
 highlight CursorColumn ctermbg=lightblue
 
 " other option
@@ -121,7 +122,7 @@ endfunction
 let gitbranch = StatuslineGit()
 
 set laststatus=2
-set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ \(%p%%\)\ TIME:\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
+set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
 
 
 
@@ -467,13 +468,20 @@ set wildmenu
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !universal-ctags -R
-    \ --exclude=.tox
+" General MakeTags that excludes building folders
+command! MakeTagsG !universal-ctags -R
     \ --exclude=.git
-    \ --exclude=docs
+    \ --exclude=.tox
+    \ --exclude=alphas
+    \ --exclude=build
     \ --exclude=dist
+    \ --exclude=docs
     \ --exclude=htmlcov
+    \ --exclude=pip-wheel-metadata
     \ .
+
+" specific for my Python projects
+command! MakeTags !universal-ctags -R src/ tests/
 
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
@@ -520,7 +528,7 @@ let g:netrw_fastbrowse = 0
 "# Spell Checking
 autocmd FileType markdown setlocal spell spelllang=en_us
 autocmd FileType rst setlocal spell spelllang=en_us
-command! Spell setlocal spell spelllang=en_us
+command! Spell setlocal spell! spelllang=en_us
 
 
 
