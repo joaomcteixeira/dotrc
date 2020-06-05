@@ -45,6 +45,8 @@ set showmode
 set nowrap
 set nobackup
 set undofile
+" https://superuser.com/questions/163589
+set hidden
 
 " https://stackoverflow.com/questions/1549263
 " two possible solutions for the same problem
@@ -72,8 +74,8 @@ set foldmethod=indent  "commands, za, zo, zc, zR, zM
 " https://vi.stackexchange.com/questions/8741/how-to-automatically-turn-off-hlsearch-after-im-done-searching
 set linebreak
 set hlsearch
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 nnoremap <esc><esc> :silent! nohls<cr>
 
 highlight ColorColumn ctermbg=248 ctermfg=NONE cterm=NONE
@@ -144,6 +146,12 @@ set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%
 
 
 "# Color Schemes
+" useful links
+" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
+" https://jonasjacek.github.io/colors/
+
+" Some colour schemes I like (apart from mine :-P)
+" https://raw.githubusercontent.com/tacahiroy/vim-colors-isotake/master/colors/isotake.vim
 
 " Show syntax highlighting groups for word under cursor
 " With this function you can identify the syntax group name
@@ -167,7 +175,6 @@ hi SpecialKey ctermbg=1 ctermfg=NONE guifg=NONE
 
 syntax on
 set background=light
-" https://jonasjacek.github.io/colors/
 highlight Normal ctermbg=254 ctermfg=NONE cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=248 cterm=NONE
 highlight Visual ctermbg=1 ctermfg=0 cterm=NONE
@@ -341,6 +348,7 @@ nnoremap ,j :up <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,k :up <bar> !tox -e check -- %<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :up <bar> !python %:p<cr>
+nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
