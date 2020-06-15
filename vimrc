@@ -175,7 +175,8 @@ hi SpecialKey ctermbg=1 ctermfg=NONE guifg=NONE
 
 syntax on
 set background=light
-highlight Normal ctermbg=254 ctermfg=NONE cterm=NONE
+"highlight Normal ctermbg=254 ctermfg=NONE cterm=NONE
+highlight Normal ctermbg=225 ctermfg=NONE cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=248 cterm=NONE
 highlight Visual ctermbg=1 ctermfg=0 cterm=NONE
 
@@ -290,6 +291,12 @@ highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
 " Navigation
 nnoremap <S-f> <C-f>
 nnoremap <S-b> <C-b>
+nnoremap n nzz
+nnoremap N Nzz
+
+
+
+
 
 " New windows
 nnoremap <Space>h :wincmd h<CR>
@@ -341,6 +348,7 @@ nnoremap <tab>c :tabclose<cr>
 "# comma remaps
 " opens a file browser windo on the left
 "nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
+nnoremap ,b :buffers<cr>
 nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
@@ -348,7 +356,8 @@ nnoremap ,j :up <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,k :up <bar> !tox -e check -- %<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,p :up <bar> !python %:p<cr>
-nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py
+nnoremap ,q :s/(/(\r        /g <bar> s/, /,\r        /g <bar> s/\():\|)/)/,\r        ):/g<cr>
+nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py<cr>
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
