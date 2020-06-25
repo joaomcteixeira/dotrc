@@ -47,6 +47,7 @@ set nobackup
 set undofile
 " https://superuser.com/questions/163589
 set hidden
+set list
 
 " https://stackoverflow.com/questions/1549263
 " two possible solutions for the same problem
@@ -77,13 +78,6 @@ set hlsearch
 "set ignorecase
 "set smartcase
 nnoremap <esc><esc> :silent! nohls<cr>
-
-highlight ColorColumn ctermbg=248 ctermfg=NONE cterm=NONE
-set colorcolumn=72,80
-
-" ctermfg=underline may be useful
-highlight CursorLine ctermbg=lightblue ctermfg=NONE cterm=NONE
-highlight CursorColumn ctermbg=lightblue
 
 " other option
 " call matchadd('ColorColumn', '\%v81v', 100)
@@ -165,40 +159,36 @@ function! <SID>SynStack()
 endfunc
 
 
-" highlights trailing whitespace
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-hi SpecialKey ctermbg=1 ctermfg=NONE guifg=NONE
+syntax on
+colorscheme codewise
+
 " notes from the past
 "match ExtraWhitespace /\w\s\+$/
 "match IndentSpace /^\s\+$/
 
-syntax on
-set background=light
-"highlight Normal ctermbg=254 ctermfg=NONE cterm=NONE
-highlight Normal ctermbg=225 ctermfg=NONE cterm=NONE
-highlight LineNr ctermbg=NONE ctermfg=248 cterm=NONE
-highlight Visual ctermbg=1 ctermfg=0 cterm=NONE
-
 " ************************* PYTHON ************************************
-" Datatypes
-highlight pythonString ctermbg=NONE ctermfg=94 cterm=NONE
-highlight pythonNumber ctermbg=None ctermfg=19 cterm=NONE
-" Expressions
-highlight link pythonTripleQuotes pythonString
-highlight link pythonQuotes pythonString
-highlight pythonFunction ctermbg=NONE ctermfg=28 cterm=bold
-highlight pythonStatement ctermbg=NONE ctermfg=0 cterm=bold
-highlight pythonDecorator ctermbg=NONE ctermfg=240 cterm=NONE
-highlight link pythonDecoratorName pythonDecorator
-highlight pythonBuiltin ctermbg=NONE ctermfg=54 cterm=none
-" Conditionals
-highlight pythonConditional ctermbg=NONE ctermfg=1 cterm=NONE
-highlight link pythonRepeat pythonConditional
-highlight link pythonExceptions pythonConditional
-highlight link pythonOperator pythonConditional
-highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
-" ********************************************************************* 
+"" Datatypes
+"highlight pythonString ctermbg=NONE ctermfg=94 cterm=NONE
+"highlight pythonNumber ctermbg=None ctermfg=19 cterm=NONE
+"" Expressions
+"highlight link pythonTripleQuotes pythonString
+"highlight link pythonQuotes pythonString
+"highlight pythonFunction ctermbg=NONE ctermfg=28 cterm=bold
+"highlight pythonStatement ctermbg=NONE ctermfg=0 cterm=bold
+"highlight pythonDecorator ctermbg=NONE ctermfg=240 cterm=NONE
+"highlight link pythonDecoratorName pythonDecorator
+"highlight pythonBuiltin ctermbg=NONE ctermfg=54 cterm=none
+"" Conditionals
+"highlight pythonConditional ctermbg=NONE ctermfg=1 cterm=NONE
+"highlight link pythonRepeat pythonConditional
+"highlight link pythonExceptions pythonConditional
+"highlight link pythonOperator pythonConditional
+"highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
+"" ********************************************************************* 
+" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
 
