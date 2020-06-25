@@ -223,7 +223,6 @@ highlight pythonException ctermbg=NONE ctermfg=0 cterm=bold
 
 
 
-
 "# Lint Syntax
 "augroup LintSyntax
 "    autocmd!
@@ -362,6 +361,7 @@ nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
 nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
 nnoremap ,w :set nowrap!<cr>
+nnoremap ,y :up <bar> !tox -e py38 -- %<cr>
 nnoremap ,z :%s/^\s*$/<cr><C-O>
 
 
