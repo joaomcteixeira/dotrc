@@ -160,7 +160,8 @@ endfunc
 
 
 syntax on
-colorscheme codewise
+"colorscheme codewise
+colorscheme jmctred
 
 " notes from the past
 "match ExtraWhitespace /\w\s\+$/
