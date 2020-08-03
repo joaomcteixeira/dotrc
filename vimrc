@@ -361,7 +361,7 @@ nnoremap ,z :%s/^\s*$/<cr><C-O>
 nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!column<Space>-t<Esc>
 nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
 nnoremap ,3 {j<C-V>}<BS>$:%sort<Esc>
-
+nnoremap ,0 colorscheme codewise
 
 
 
