@@ -160,8 +160,8 @@ endfunc
 
 
 syntax on
-"colorscheme codewise
-colorscheme jmctred
+colorscheme codewise
+"colorscheme jmctred
 
 " notes from the past
 "match ExtraWhitespace /\w\s\+$/
@@ -355,6 +355,7 @@ nnoremap ,w :set nowrap!<cr>
 nnoremap ,y :up <bar> !tox -e py38 -- %<cr>
 nnoremap ,z :%s/^\s*$/<cr><C-O>
 
+"nnoremap ,R ... " this one is placed bellow in the R section
 
 " plantUML bindings
 " https://vi.stackexchange.com/questions/16094/add-a-block-of-text-to-end-of-lines
@@ -428,6 +429,52 @@ function! s:insert_pyfunc(funcname)
 endfunction
 
 command! -nargs=1 Pfunc :call <SID>insert_pyfunc(<q-args>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"# R commands and related
+nnoremap ,R :up <bar> :let b:RMARKTMP="!R -e rmarkdown::render\"('" . expand("%:t") . "', output_file='" . expand("%:t:r") . ".html'" . ")\"" <bar> :execute b:RMARKTMP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
