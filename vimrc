@@ -160,8 +160,8 @@ endfunc
 
 
 syntax on
-"colorscheme codewise
-colorscheme jmctred
+colorscheme codewise
+"colorscheme jmctred
 
 " notes from the past
 "match ExtraWhitespace /\w\s\+$/
@@ -315,7 +315,9 @@ nnoremap <tab>c :tabclose<cr>
 
 
 
-
+" Move visual selection
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
 
 
 
@@ -355,13 +357,16 @@ nnoremap ,w :set nowrap!<cr>
 nnoremap ,y :up <bar> !tox -e py38 -- %<cr>
 nnoremap ,z :%s/^\s*$/<cr><C-O>
 
+"nnoremap ,R ... " this one is placed bellow in the R section
+"nnoremap ,S
+"nnoremap ,SS
 
 " plantUML bindings
 " https://vi.stackexchange.com/questions/16094/add-a-block-of-text-to-end-of-lines
 nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!column<Space>-t<Esc>
 nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
 nnoremap ,3 {j<C-V>}<BS>$:%sort<Esc>
-
+nnoremap ,0 :colorscheme codewise<cr>
 
 
 
@@ -428,6 +433,55 @@ function! s:insert_pyfunc(funcname)
 endfunction
 
 command! -nargs=1 Pfunc :call <SID>insert_pyfunc(<q-args>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"# R commands and related
+nnoremap ,R :up <bar> :let b:RMARKTMP="!R -e rmarkdown::render\"('" . expand("%:t") . "', output_file='" . expand("%:t:r") . ".html'" . ")\"" <bar> :execute b:RMARKTMP
+nnoremap ,RR :up <bar> :let b:RMARKTMP="!R -e \"rmarkdown::render('" . expand("%:t") . "')\"" <bar> :execute b:RMARKTMP
+nnoremap ,S :up <bar> :!Rscript %
+nnoremap ,SS :up <bar> :!R CMD BATCH %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
