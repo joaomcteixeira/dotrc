@@ -477,7 +477,8 @@ set wildmenu
 
 " Create the `tags` file (may need to install ctags first)
 " General MakeTags that excludes building folders
-command! MakeTagsG !universal-ctags -R
+"command! MakeTagsG !universal-ctags -R
+command! MakeTagsG !ctags -R
     \ --exclude=.git
     \ --exclude=.tox
     \ --exclude=alphas
