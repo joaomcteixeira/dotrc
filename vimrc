@@ -60,6 +60,11 @@ silent !mkdir -p $HOME/.vim/swp
 set undodir=$HOME/.vim/undo//
 set directory=$HOME/.vim/swp//
 
+augroup auto_save_folds
+autocmd!
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent loadview
+
 
 nnoremap ; :
 "nnoremap : ;
@@ -71,7 +76,18 @@ set tabstop=4 sts=4 shiftwidth=4 expandtab
 set autoindent      "Keep indentation from previous line
 "set smartindent     "Automatically inserts indentation in some cases
 "set cindent         "Like smartindent, but stricter and more customisable
-set foldmethod=indent  "commands, za, zo, zc, zR, zM
+
+" fold folding
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=manual
+set foldcolumn=3
+"set foldmethod=marker
+"set foldmethod=indent  "commands, za, zo, zc, zR, zM
+"set foldmethod=syntax
+
+
 " https://vi.stackexchange.com/questions/8741/how-to-automatically-turn-off-hlsearch-after-im-done-searching
 set linebreak
 set hlsearch
@@ -278,12 +294,15 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 "# Fast mapping
 
+"inoremap <TAB> <ESC>
+nnoremap <TAB> <esc>
+
 " Navigation
 nnoremap <S-f> <C-f>
 nnoremap <S-b> <C-b>
 nnoremap n nzz
 nnoremap N Nzz
-
+nnoremap ,, `^
 
 
 
