@@ -398,7 +398,8 @@ nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
 nnoremap ,3 {j<C-V>}<BS>$:%sort<Esc>
 nnoremap ,0 :colorscheme codewise<cr>
 
-
+" https://vim.fandom.com/wiki/Insert_current_date_or_time
+nnoremap <F5> "=strftime("%c")<CR>p
 
 
 
@@ -421,7 +422,7 @@ nnoremap ,0 :colorscheme codewise<cr>
 "# Python specific commands
 
 command! Flist g/^\s*\(def\|class\)\s/#
-command! Dlist g/^\h\s\=\s/#
+command! Dlist g/^\h\w*\s*[=]\s*.*$/#
 
 " https://stackoverflow.com/questions/57074531/vim-command-to-insert-multiline-text-with-argument
 function! s:insert_pyclass(classname)
