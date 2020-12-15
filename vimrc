@@ -361,13 +361,24 @@ vnoremap K :m '<-2<cr>gv=gv
 "nnoremap ,e :1wincmd w <bar> :wincmd v <bar> :edit . <bar> :vertical resize 30<cr>
 nnoremap ,b :buffers<cr>
 nnoremap ,c :set cursorline! cursorcolumn!<cr>
+nnoremap ,d :Dlist<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,f :Flist<cr>
 nnoremap ,j :up <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,k :up <bar> !tox -e check -- %<cr>
 nnoremap ,n :set number! relativenumber!<cr>
+" https://stackoverflow.com/questions/28651472/in-vim-how-can-i-save-a-file-to-a-path-stored-in-a-variable
+nnoremap ,o :up <bar>
+          \ :let g:CPROFILEORI=expand('%:t:r') <bar>
+          \ :let b:CPROFILE=expand('%:t:r') . '.cProfile_out' <bar>
+          \ :execute '!python -m cProfile -o ' . b:CPROFILE . ' ' . expand('%:p') <bar>
+          \ :let CPROFILEOUTPUT=system('python -c "import pstats; from pstats import SortKey; p = pstats.Stats(' . "'" . b:CPROFILE . "'" . '); p.sort_stats(SortKey.TIME).print_stats(50)"') <bar>
+          \ :tabe <bar>
+          \ :put =CPROFILEOUTPUT <bar>
+          \ :exec 'saveas' g:CPROFILEORI  . '\.cProfile_read' <cr>
 nnoremap ,p :up <bar> !python %:p<cr>
 nnoremap ,q :s/(/(\r        /g <bar> s/, /,\r        /g <bar> s/\():\|)/)/,\r        ):/g<cr>
+"nnoremap ,q :.s/, /,        /g <bar> .s/)/,        )/g <cr>
 nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py<cr>
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
@@ -410,6 +421,7 @@ nnoremap ,0 :colorscheme codewise<cr>
 "# Python specific commands
 
 command! Flist g/^\s*\(def\|class\)\s/#
+command! Dlist g/^\h\s\=\s/#
 
 " https://stackoverflow.com/questions/57074531/vim-command-to-insert-multiline-text-with-argument
 function! s:insert_pyclass(classname)
@@ -564,6 +576,9 @@ command! MakeTagsG !ctags -R
 
 " specific for my Python projects
 command! MakeTags !universal-ctags -R src/ tests/
+
+" make tags here at dot folder
+command! MakeTagsH !universal-ctags -R .
 
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
