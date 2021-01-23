@@ -60,10 +60,10 @@ silent !mkdir -p $HOME/.vim/swp
 set undodir=$HOME/.vim/undo//
 set directory=$HOME/.vim/swp//
 
-augroup auto_save_folds
-autocmd!
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent loadview
+"augroup auto_save_folds
+"autocmd!
+"autocmd BufWinLeave * mkview
+"autocmd BufWinEnter * silent loadview
 
 
 nnoremap ; :
@@ -580,6 +580,9 @@ command! MakeTags !universal-ctags -R src/ tests/
 
 " make tags here at dot folder
 command! MakeTagsH !universal-ctags -R .
+
+" make tags for this file
+command! MakeTagsT !universal-ctags %
 
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
