@@ -17,6 +17,29 @@
 " https://github.com/tpope/vim-eunuch
 " to install simply run this in your home folder
 " git clone https://github.com/tpope/vim-eunuch ~/.vim/pack/tpope/start/vim-eunuch
+"
+"
+" Thoughts and notes are at the end of the file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,12 +49,38 @@
 "# pre set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
+" codewise from https://github.com/joaomcteixeira/run_commands/blob/refact_vimrc/vim_colorschemes/codewise.vim
 colorscheme codewise
 
 " https://stackoverflow.com/questions/1549263
-silent !mkdir -p $HOME/.vim/undo  "silent !mkdir $HOME/.vim/undo > /dev/null 2>&1
-silent !mkdir -p $HOME/.vim/swp  "silent !mkdir $HOME/.vim/swp > /dev/null 2>&1
+"silent !mkdir $HOME/.vim/undo > /dev/null 2>&1
+silent !mkdir -p $HOME/.vim/undo
+"silent !mkdir $HOME/.vim/swp > /dev/null 2>&1
+" thought I use swp off
+silent !mkdir -p $HOME/.vim/swp
 silent !mkdir -p $HOME/.vim/view
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,11 +91,11 @@ set nocompatible
 set history=1000
 set showcmd
 set showmode
-set nowrap
+set nowrap  " I have a bind to set wrap ,w
 set linebreak  " combines with wrap when active
-set nobackup
-set noswapfile
-set undofile
+set nobackup  " does not create backup file in cwd
+set noswapfile  " ATTENTION won't block you from open the same file twice
+set undofile  " persistent undo history
 set hidden " switch buffer without saving https://superuser.com/questions/163589
 set list  " show whitespaces as characters
 set undodir=$HOME/.vim/undo//
@@ -63,9 +112,9 @@ set foldmethod=manual
 "set foldmethod=syntax
 set tabstop=4 sts=4 shiftwidth=4 expandtab
 set autoindent      "Keep indentation from previous line
-set hlsearch
+set hlsearch  " I have a bind to disable highlight
 set incsearch  " highlights search as you type
-set scrolloff=8
+set scrolloff=8  " keeps cursor away from bottom and top
 " from https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 " fuzzy recursive finding in :e and :b
 set path+=**
@@ -77,10 +126,34 @@ set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Lets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let gitbranch_ = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+" See also StatuslineGit() function and gitbranch var
+"
+" options for netre, bind with ,e
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
@@ -90,6 +163,25 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " https://vi.stackexchange.com/questions/14622
 let g:netrw_fastbrowse = 0
 "let g:netrw_winsize = 25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,13 +236,31 @@ command! MakeTagsT !universal-ctags %
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#" auto commands
+"# auto commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" beautiful combo with .vim/view
 augroup auto_save_folds
     autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
+    autocmd BufWinLeave vimrc,*.* mkview
+    autocmd BufWinEnter vimrc,*.* silent loadview
 augroup END
 
 " Line Numberig
@@ -175,8 +285,30 @@ autocmd FileType rst setlocal spell spelllang=en_us
 
 
 
-"# Key Mappings
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"# Key Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://vim.fandom.com/wiki/Insert_current_date_or_time
 nnoremap <F5> "=strftime("%c")<CR>p
 " https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
@@ -298,7 +430,12 @@ nnoremap <C-S-P> :call <SID>SynStack()<CR>
 
 
 
-"# Display improvement
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"# Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Display improvement
 
 " Status line
 "function! GitBranch()
@@ -323,7 +460,6 @@ function! StatuslineGit()
 endfunction
 let gitbranch = StatuslineGit()
 
-
 " useful links
 " http://vimcasts.org/episodes/creating-colorschemes-for-vim/
 " https://jonasjacek.github.io/colors/
@@ -336,6 +472,7 @@ let gitbranch = StatuslineGit()
 " usage: control+p
 " see binding
 " nnoremap <C-S-P> :call <SID>SynStack()<CR>
+" This function is redundant with the binding for F12
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -349,6 +486,7 @@ function! s:GitCommit()
   !git add %
   !git commit
 endfunction
+
 
 " https://stackoverflow.com/questions/57074531/vim-command-to-insert-multiline-text-with-argument
 function! s:insert_pyclass(classname)
@@ -388,9 +526,15 @@ function! s:insert_pyfunc(funcname)
     call append('.', l:text)
 endfunction
 
-"# Relevant Links
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Notes, Comments, and other references
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Relevant Links
 " https://stackoverflow.com/questions/16768059/how-to-understand-these-vim-scripts
 " https://www.youtube.com/watch?v=aHm36-na4-4
 
-"# Plugins to consider
+" Plugins to consider
 " https://github.com/maxboisvert/vim-simple-complete
