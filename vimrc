@@ -48,6 +48,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# pre set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
 syntax on
 " codewise from https://github.com/joaomcteixeira/run_commands/blob/refact_vimrc/vim_colorschemes/codewise.vim
 colorscheme codewise
@@ -83,11 +84,9 @@ silent !mkdir -p $HOME/.vim/view
 
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 set history=1000
 set showcmd
 set showmode
@@ -122,7 +121,9 @@ set wildmenu
 " status line
 set laststatus=2
 set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
-
+" https://stackoverflow.com/questions/23012391
+set viminfo=%,<800,'1000,/20,:50,h,f0,n~/.vim/.viminfo
+set timeout timeoutlen=800  " mostly used because of <TAB><TAB> <ESC>
 
 
 
@@ -150,6 +151,7 @@ set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Lets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $tabcounter = 1
 let gitbranch_ = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 " See also StatuslineGit() function and gitbranch var
 "
@@ -336,7 +338,7 @@ vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
 cnoremap <Tab> <C-C><Esc>
 inoremap <Tab> <Esc>`^
-inoremap <Leader><Tab> <Tab>
+inoremap <Tab><Tab> <Tab>
 
 
 " Navigation
@@ -345,7 +347,6 @@ nnoremap <S-b> <C-b>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap ,, `^
-
 
 " New windows
 nnoremap <Space>h :wincmd h<CR>
@@ -360,12 +361,6 @@ nnoremap <Space>= :wincmd =<cr>
 
 
 " New tabs
-let $tabcounter = 1
-
-function! Sum()
-  tabnew $tabcounter
-  let $tabcounter = $tabcounter + 1
-endfunction
 
 nnoremap <tab>n :call Sum()<cr>
 nnoremap <tab>l :tabnext<cr>
@@ -415,7 +410,7 @@ nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!col
 " comma remaps for writing
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,w :set nowrap!<cr>
-
+nnoremap ,7 :call SetTW()<cr>
 
 " comma remaps to edit text
 nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
@@ -431,9 +426,46 @@ nnoremap <C-S-P> :call <SID>SynStack()<CR>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! Sum()
+  tabnew $tabcounter
+  let $tabcounter = $tabcounter + 1
+endfunction
+
+
+function! SetTW()
+    if &textwidth == 80
+        :set tw=72
+    elseif &textwidth == 72
+        :set tw=0
+    else
+        :set tw=80
+    endif
+endfunction
+
 
 " Display improvement
 
@@ -525,6 +557,26 @@ function! s:insert_pyfunc(funcname)
     call map(l:text, {k, v -> l:indent . substitute(v, '\C<TMPL>', a:funcname, 'g')})
     call append('.', l:text)
 endfunction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
