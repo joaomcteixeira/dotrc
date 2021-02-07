@@ -123,7 +123,7 @@ set laststatus=2
 set statusline=%n\ %{gitbranch}\ %t\ %r%m%=\ %l\/%L\|%c\ %p%%\ \|\ %{strftime('%a\ %d\/%b\/%Y\ %H:%M\ %p')}
 " https://stackoverflow.com/questions/23012391
 set viminfo=%,<800,'1000,/20,:50,h,f0,n~/.vim/.viminfo
-set timeout timeoutlen=800  " mostly used because of <TAB><TAB> <ESC>
+"set timeout timeoutlen=800  " mostly used because of <TAB><TAB> <ESC>
 
 
 
@@ -333,12 +333,12 @@ nnoremap : ;
 
 
 " bind tab to esc
-nnoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-cnoremap <Tab> <C-C><Esc>
-inoremap <Tab> <Esc>`^
-inoremap <Tab><Tab> <Tab>
+"nnoremap <Tab> <Esc>
+"vnoremap <Tab> <Esc>gV
+"onoremap <Tab> <Esc>
+"cnoremap <Tab> <C-C><Esc>
+"inoremap <Tab> <Esc>`^
+"inoremap <Tab><Tab> <Tab>
 
 
 " Navigation
