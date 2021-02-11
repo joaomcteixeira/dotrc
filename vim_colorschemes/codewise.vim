@@ -20,7 +20,7 @@ set colorcolumn=72,80
 
 " open :help syntax
 " look for keyword group-name
-"hi Comment           term=NONE  cterm=NONE  ctermfg=NONE  ctermbg=NONE  gui=NONE  guifg=NONE  guibg=NONE
+hi Comment           term=NONE  cterm=NONE  ctermfg=139  ctermbg=NONE  gui=NONE  guifg=NONE  guibg=NONE
 "hi Constant          term=NONE  cterm=NONE  ctermfg=NONE  ctermbg=NONE  gui=NONE  guifg=NONE  guibg=NONE
 hi String            term=NONE  cterm=NONE  ctermfg=94  ctermbg=NONE  gui=NONE  guifg=NONE  guibg=NONE
 hi Character         term=NONE  cterm=NONE  ctermfg=94  ctermbg=NONE  gui=NONE  guifg=NONE  guibg=NONE
