@@ -42,9 +42,6 @@
 
 
 
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# pre set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -374,7 +371,7 @@ nnoremap ,c :set cursorline! cursorcolumn!<cr>
 nnoremap ,e :1wincmd w <bar> :30vs +Ex<cr>
 nnoremap ,n :set number! relativenumber!<cr>
 nnoremap ,z :%s/\s\+$//e<cr><C-O>
-nnoremap ,v :e /home/joao/GitHub/run_commands/vimrc<cr>
+nnoremap ,v :e $HOME/.vimrc<cr>
 
 
 " comma remaps for Python
