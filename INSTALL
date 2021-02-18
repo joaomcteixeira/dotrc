@@ -1,8 +1,14 @@
 #!/bin/bash
-echo $HOME
 pwd=$(pwd)
+echo $HOME
 echo $pwd
+
 ln -s $pwd/vimrc $HOME/.vimrc
 ln -s $pwd/tmux.conf $HOME/.tmux.conf
+
 mkdir -p $HOME/.vim/colors
-cp vim_colorschemes/*.vim $HOME/.vim/colors
+
+for i in vim_colorschemes/*.vim
+do
+    ln -s $pwd/${i} $HOME/.vim/colors/$(basename $i)
+done
