@@ -339,8 +339,8 @@ nnoremap : ;
 
 
 " Navigation
-nnoremap <C-K> :bp<CR>
-nnoremap <C-J> :bn<CR>
+nnoremap <C-K> :bn<CR>
+nnoremap <C-J> :bp<CR>
 nnoremap <S-f> <C-f>
 nnoremap <S-b> <C-b>
 nnoremap n nzz
