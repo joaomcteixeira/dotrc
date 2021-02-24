@@ -392,6 +392,7 @@ nnoremap ,p :up <bar> !python %:p<cr>
 nnoremap ,q :s/(/(\r        /g <bar> s/, /,\r        /g <bar> s/\():\|)/)/,\r        ):/g<cr>
 nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
+nnoremap ,u :up<cr>
 nnoremap ,y :up <bar> !tox -e py38 -- %<cr>
 
 " R specific bindings, not used so frequently
