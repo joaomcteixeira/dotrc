@@ -3,12 +3,18 @@ pwd=$(pwd)
 echo $HOME
 echo $pwd
 
+# links rc configs
 ln -s $pwd/vimrc $HOME/.vimrc
 ln -s $pwd/tmux.conf $HOME/.tmux.conf
 
+# installs vim color schemes
 mkdir -p $HOME/.vim/colors
 
 for i in vim_colorschemes/*.vim
 do
     ln -s $pwd/${i} $HOME/.vim/colors/$(basename $i)
 done
+
+# Install vim plugins
+mkdir -p $HOME/.vim/pack/vendor/start/VimCompletesMe
+git clone https://github.com/ajh17/VimCompletesMe  $HOME/.vim/pack/vendor/start/VimCompletesMe
