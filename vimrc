@@ -46,7 +46,7 @@
 "# pre set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-syntax on
+syntax off
 " codewise from https://github.com/joaomcteixeira/run_commands/blob/refact_vimrc/vim_colorschemes/codewise.vim
 colorscheme codewise
 
@@ -220,13 +220,13 @@ command! MakeTagsG !ctags -R
     \ .
 
 " specific for my Python projects
-command! MakeTags !universal-ctags -R src/ tests/
+command! MakeTags !ctags-universal -R src/ tests/
 
 " make tags here at dot folder
-command! MakeTagsH !universal-ctags -R .
+command! MakeTagsH !ctags-universal -R .
 
 " make tags for this file
-command! MakeTagsT !universal-ctags %
+command! MakeTagsT !ctags-universal %
 
 
 
@@ -393,6 +393,7 @@ nnoremap ,q :s/(/(\r        /g <bar> s/, /,\r        /g <bar> s/\():\|)/)/,\r   
 nnoremap ,r :e /home/joao/Dropbox/labo-documents/My_Books/Programming/python/python_recipes.py<cr>
 nnoremap ,t :up <bar> !tox -e py37 -- %<cr>
 nnoremap ,u :up<cr>
+nnoremap ,x :syntax on<cr>
 nnoremap ,y :up <bar> !tox -e py38 -- %<cr>
 
 " R specific bindings, not used so frequently
@@ -410,7 +411,8 @@ nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!col
 " comma remaps for writing
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,w :set nowrap!<cr>
-nnoremap ,7 :call SetTW()<cr>
+nnoremap ,7 :set textwidth=72<cr>
+nnoremap ,8 :set textwidth=80<cr>
 
 " comma remaps to edit text
 nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
@@ -456,15 +458,16 @@ function! Sum()
 endfunction
 
 
-function! SetTW()
-    if &textwidth == 80
-        :set tw=72
-    elseif &textwidth == 72
-        :set tw=0
-    else
-        :set tw=80
-    endif
-endfunction
+" stop using it on Tue 29 Jun 2021 04:13:24 PM
+"function! SetTW()
+"    if &textwidth == 80
+"        :set tw=72
+"    elseif &textwidth == 72
+"        :set tw=0
+"    else
+"        :set tw=80
+"    endif
+"endfunction
 
 
 " Display improvement
