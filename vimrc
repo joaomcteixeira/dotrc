@@ -413,6 +413,7 @@ nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,w :set nowrap!<cr>
 nnoremap ,7 :set textwidth=72<cr>
 nnoremap ,8 :set textwidth=80<cr>
+nnoremap ,0 :set textwidth=0<cr>
 
 " comma remaps to edit text
 nnoremap ,2 {j<C-V>}<BS>:%!column<Space>-t<Esc>
@@ -420,7 +421,7 @@ nnoremap ,3 {j<C-V>}<BS>$:%sort<Esc>
 
 
 " other
-nnoremap ,0 :colorscheme codewise<cr>
+"nnoremap ,0 :colorscheme codewise<cr>
 nnoremap <C-S-P> :call <SID>SynStack()<CR>
 
 
