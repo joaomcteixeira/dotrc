@@ -409,6 +409,9 @@ nnoremap ,j :up <bar> !java -jar ~/software/plantuml/plantuml.jar %:p -tsvg<cr>
 nnoremap ,1 mty}}pddbbdd't<C-V>}mb<BS>$A -down- <Esc>gvd'bjPkd't<C-V>}<BS>:%!column<Space>-t<Esc>
 
 
+" https://stackoverflow.com/questions/2514445
+set pastetoggle=<F3>
+
 " comma remaps for writing
 nnoremap ,s :set spell! spelllang=en_us<cr>
 nnoremap ,w :set nowrap!<cr>
