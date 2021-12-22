@@ -46,7 +46,7 @@
 "# pre set commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-syntax off
+syntax on
 " codewise from https://github.com/joaomcteixeira/run_commands/blob/refact_vimrc/vim_colorschemes/codewise.vim
 colorscheme codewise
 
@@ -380,7 +380,7 @@ nnoremap ,v :e $HOME/.vimrc<cr>
 " comma remaps for Python
 nnoremap ,d :Dlist<cr>
 nnoremap ,f :Flist<cr>
-nnoremap ,k :up <bar> !tox -e check -- %<cr>
+nnoremap ,k :up <bar> !tox -e lint -- %<cr>
 nnoremap ,o :up <bar>
           \ :let g:CPROFILEORI=expand('%:t:r') <bar>
           \ :let b:CPROFILE=expand('%:t:r') . '.cProfile_out' <bar>
