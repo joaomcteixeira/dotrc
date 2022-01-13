@@ -324,7 +324,7 @@ vnoremap K :m '<-2<cr>gv=gv
 
 " quick binds
 " https://vi.stackexchange.com/questions/8741/
-nnoremap <esc><esc> :silent! nohls <bar> :update <cr>
+nnoremap <Esc><Esc> :silent! nohls<cr>
 nnoremap ; :
 nnoremap : ;
 
@@ -336,7 +336,7 @@ nnoremap : ;
 "cnoremap <Tab> <C-C><Esc>
 "inoremap <Tab> <Esc>`^
 "inoremap <Tab><Tab> <Tab>
-inoremap <Esc> <Esc>:update<cr>
+"inoremap <Esc> <Esc>:update<cr>
 
 
 " Navigation
