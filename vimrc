@@ -6,12 +6,12 @@
 " Search for "# to scroll headers
 " topics are separated by 25 empty lines
 "
-" Plugins I use and how to install them, for Vim +8
+" Plugins I use and how to install them for Vim +8
 "
 " VimCompletesMe
 " https://github.com/ajh17/VimCompletesMe
 " to install simply run this in your home folder
-" git clone git://github.com/ajh17/VimCompletesMe.git ~/.vim/pack/vendor/start/VimCompletesMe
+" git clone https://github.com/vim-scripts/VimCompletesMe ~/.vim/pack/vendor/start/VimCompletesMe
 "
 " vim-eunuch
 " https://github.com/tpope/vim-eunuch
@@ -193,8 +193,8 @@ let g:netrw_fastbrowse = 0
 " Python specific commands
 command! Flist g/^\s*\(def\|class\)\s/#
 command! Dlist g/^\h\w*\s*[=]\s*.*$/#
-command! -nargs=1 Pfunc :call <SID>insert_pyfunc(<q-args>)
-command! -nargs=1 PClass :call <SID>insert_pyclass(<q-args>)
+command! -nargs=1 PF :call <SID>insert_pyfunc(<q-args>)
+command! -nargs=1 PC :call <SID>insert_pyclass(<q-args>)
 
 " Git specific commands
 command! Commit :call <SID>GitCommit()
@@ -346,7 +346,7 @@ nnoremap <S-f> <C-f>
 nnoremap <S-b> <C-b>
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap ,, `^
+"nnoremap ,, `^
 
 " New windows
 nnoremap <Space>h :wincmd h<CR>
@@ -361,7 +361,6 @@ nnoremap <Space>= :wincmd =<cr>
 
 
 " New tabs
-
 nnoremap <tab>n :call Sum()<cr>
 nnoremap <tab>l :tabnext<cr>
 nnoremap <tab>h :tabprev<cr>
@@ -541,6 +540,8 @@ function! s:insert_pyclass(classname)
         \ '        ----------',
         \ '        """',
         \ '        return',
+        \ '',
+        \ '',
     \ ]
     call map(l:text, {k, v -> l:indent . substitute(v, '\C<TMPL>', a:classname, 'g')})
     call append('.', l:text)
@@ -561,6 +562,8 @@ function! s:insert_pyfunc(funcname)
         \ '    """',
         \ '',
         \ '    return',
+        \ '',
+        \ '',
     \ ]
     call map(l:text, {k, v -> l:indent . substitute(v, '\C<TMPL>', a:funcname, 'g')})
     call append('.', l:text)
